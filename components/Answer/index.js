@@ -11,6 +11,7 @@ export default class Answer extends React.Component{
     };
   }
 
+  //called for each answer in the JSON object
   createAnswer(ans) {
     return <li key={ans.aid}>{ans.answer}</li>;
   }

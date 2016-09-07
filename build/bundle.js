@@ -21641,6 +21641,9 @@
 	    return _this;
 	  }
 
+	  //called for each answer in the JSON object
+
+
 	  _createClass(Answer, [{
 	    key: 'createAnswer',
 	    value: function createAnswer(ans) {
