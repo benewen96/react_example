@@ -1,6 +1,8 @@
 import React from 'react';
 import Data from '../Data';
 
+import Answer from '../Answer';
+
 export default class Question extends React.Component{
   //loops through the imported data and finds the question from this.props.id
   looper(){
@@ -10,28 +12,31 @@ export default class Question extends React.Component{
        * looper can access this.props.id
        */
     	if (Data.factory.records[i].Id === this.props.id) {
-        return Data.factory.records[i].question;
+        return JSON.stringify(Data.factory.records[i]);
       }
     }
-    return 'Question not found';
+    return JSON.stringify({question : 'Not found'});
   }
 
   //we pass props (from current context) to the constructor to make them accessible when setting the state
   constructor(props) {
+    console.log(props);
     super(props);
 
     this.state = {
-        //get the id from prop
-        id : this.props.id,
         data : this.looper()
-      };
+    };
   }
 
   render() {
+    var data = JSON.parse(this.state.data);
+    var answers = JSON.stringify(data.answers);
+
     return (
       <div>
-        <h4>Question {this.state.id}</h4>
-        <p>{this.state.data}</p>
+        <h4>Question {this.props.id}</h4>
+        <p>{data.question}</p>
+        <Answer answers={answers} />
       </div>
     );
   }

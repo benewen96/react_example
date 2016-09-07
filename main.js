@@ -18,8 +18,3 @@ ReactDOM.render(
   <Question id='001E000000Im0jQIAR'/>,
   document.getElementById('q3')
 )
-
-ReactDOM.render(
-  <Question id='001E000000Im0jQIARdfdf'/>,
-  document.getElementById('q4')
-)
