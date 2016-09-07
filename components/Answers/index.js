@@ -15,8 +15,8 @@ export default class Answers extends React.Component{
   clickAnswer(ans) {
     this.setState({answer : ans.answer});
 
-    document.getElementById('event').innerHTML = 'Answer changed!';
-
+    //we don't actually need to know *what* answer has changed, just need to trigger the update
+    $('#event').append('<p> Answer with the id: ' + ans.aid + ' has been selected!<p>');
   }
 
   //called for each answer in the JSON object
