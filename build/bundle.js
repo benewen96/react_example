@@ -21541,8 +21541,6 @@
 	  function Question(props) {
 	    _classCallCheck(this, Question);
 
-	    console.log(props);
-
 	    var _this = _possibleConstructorReturn(this, (Question.__proto__ || Object.getPrototypeOf(Question)).call(this, props));
 
 	    _this.state = {
@@ -21644,28 +21642,22 @@
 	  }
 
 	  _createClass(Answer, [{
+	    key: 'createAnswer',
+	    value: function createAnswer(ans) {
+	      return _react2.default.createElement(
+	        'li',
+	        { key: ans.aid },
+	        ans.answer
+	      );
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var answers = JSON.parse(this.props.answers);
-	      var res = [];
-
-	      for (var i = 0; i < answers.length; ++i) {
-	        res.push(_react2.default.createElement(
-	          'li',
-	          { key: answers[i].aid },
-	          ' ',
-	          answers[i].answer,
-	          ' '
-	        ));
-	      }
 	      return _react2.default.createElement(
-	        'div',
+	        'ul',
 	        null,
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          res
-	        )
+	        answers.map(this.createAnswer)
 	      );
 	    }
 	  }]);

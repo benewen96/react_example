@@ -20,7 +20,6 @@ export default class Question extends React.Component{
 
   //we pass props (from current context) to the constructor to make them accessible when setting the state
   constructor(props) {
-    console.log(props);
     super(props);
 
     this.state = {

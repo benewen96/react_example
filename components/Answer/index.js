@@ -11,18 +11,13 @@ export default class Answer extends React.Component{
     };
   }
 
+  createAnswer(ans) {
+    return <li key={ans.aid}>{ans.answer}</li>;
+  }
+
   render() {
     var answers = JSON.parse(this.props.answers);
-    var res = [];
-
-    for(var i = 0; i < answers.length; ++i) {
-      res.push(<li key={answers[i].aid}> {answers[i].answer} </li>);
-    }
-    return (
-      <div>
-      <p>{res}</p>
-      </div>
-    );
+    return <ul>{answers.map(this.createAnswer)}</ul>;
   }
 
 }
