@@ -53,6 +53,12 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -67,10 +73,39 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_Question2.default, { id: '001E000000Im0jSIAR' }), document.getElementById('q1'));
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	//import all react components below...
 
+
+	var Page = function (_React$Component) {
+	  _inherits(Page, _React$Component);
+
+	  function Page(props) {
+	    _classCallCheck(this, Page);
+
+	    var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
+
+	    _this.state = {};
+	    return _this;
+	  }
+
+	  _createClass(Page, [{
+	    key: 'render',
+	    value: function render() {}
+	  }]);
+
+	  return Page;
+	}(_react2.default.Component);
+
+	exports.default = Page;
+
+
+	_reactDom2.default.render(_react2.default.createElement(_Question2.default, { id: '001E000000Im0jSIAR' }), document.getElementById('q1'));
 
 	_reactDom2.default.render(_react2.default.createElement(_Question2.default, { id: '001E000000Im0jUIAR' }), document.getElementById('q2'));
 
@@ -21502,9 +21537,9 @@
 
 	var _Data2 = _interopRequireDefault(_Data);
 
-	var _Answer = __webpack_require__(175);
+	var _Answers = __webpack_require__(175);
 
-	var _Answer2 = _interopRequireDefault(_Answer);
+	var _Answers2 = _interopRequireDefault(_Answers);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21569,7 +21604,7 @@
 	          null,
 	          data.question
 	        ),
-	        _react2.default.createElement(_Answer2.default, { answers: answers })
+	        _react2.default.createElement(_Answers2.default, { answers: answers })
 	      );
 	    }
 	  }]);
@@ -21591,7 +21626,7 @@
 	  records: [{ attributes: [Object],
 	    Id: '001E000000Im0jSIAR',
 	    question: 'What is 5 + 5?',
-	    answers: [{ 'aid': '1', 'answer': '10' }, { 'aid': '2', 'answer': '20' }] }, { attributes: [Object],
+	    answers: [{ 'aid': '1', 'answer': '10' }, { 'aid': '2', 'answer': '20' }, { 'aid': '3', 'answer': '26' }, { 'aid': '4', 'answer': '94' }] }, { attributes: [Object],
 	    Id: '001E000000Im0jUIAR',
 	    question: 'What is 10 / 5?',
 	    answers: [{ 'aid': '1', 'answer': '2' }] }, { attributes: [Object],
@@ -21626,30 +21661,38 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Answer = function (_React$Component) {
-	  _inherits(Answer, _React$Component);
+	var Answers = function (_React$Component) {
+	  _inherits(Answers, _React$Component);
 
 	  //we pass props (from current context) to the constructor to make them accessible when setting the state
-	  function Answer(props) {
-	    _classCallCheck(this, Answer);
+	  function Answers(props) {
+	    _classCallCheck(this, Answers);
 
-	    var _this = _possibleConstructorReturn(this, (Answer.__proto__ || Object.getPrototypeOf(Answer)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Answers.__proto__ || Object.getPrototypeOf(Answers)).call(this, props));
 
 	    _this.state = {
-	      answer: ''
+	      answer: 'initial'
 	    };
+	    _this.createAnswer = _this.createAnswer.bind(_this);
 	    return _this;
 	  }
 
-	  //called for each answer in the JSON object
+	  _createClass(Answers, [{
+	    key: 'clickAnswer',
+	    value: function clickAnswer(ans) {
+	      this.setState({ answer: ans.answer });
 
+	      document.getElementById('event').innerHTML = 'Answer changed!';
+	    }
 
-	  _createClass(Answer, [{
+	    //called for each answer in the JSON object
+
+	  }, {
 	    key: 'createAnswer',
 	    value: function createAnswer(ans) {
 	      return _react2.default.createElement(
 	        'li',
-	        { key: ans.aid },
+	        { onClick: this.clickAnswer.bind(this, ans), key: ans.aid },
 	        ans.answer
 	      );
 	    }
@@ -21657,18 +21700,29 @@
 	    key: 'render',
 	    value: function render() {
 	      var answers = JSON.parse(this.props.answers);
+	      console.log(this.state);
 	      return _react2.default.createElement(
-	        'ul',
+	        'div',
 	        null,
-	        answers.map(this.createAnswer)
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          answers.map(this.createAnswer)
+	        ),
+	        ' ',
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.state.answer
+	        )
 	      );
 	    }
 	  }]);
 
-	  return Answer;
+	  return Answers;
 	}(_react2.default.Component);
 
-	exports.default = Answer;
+	exports.default = Answers;
 
 /***/ }
 /******/ ]);

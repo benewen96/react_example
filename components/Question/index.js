@@ -1,7 +1,7 @@
 import React from 'react';
 import Data from '../Data';
 
-import Answer from '../Answer';
+import Answer from '../Answers';
 
 export default class Question extends React.Component{
   //loops through the imported data and finds the question from this.props.id
@@ -33,6 +33,7 @@ export default class Question extends React.Component{
 
     return (
       <div>
+
         <h4>Question {this.props.id}</h4>
         <p>{data.question}</p>
         <Answer answers={answers} />
